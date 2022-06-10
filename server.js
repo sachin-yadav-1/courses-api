@@ -14,3 +14,13 @@ mongoose
 // SERVER
 const PORT = process.env.PORT;
 const server = app.listen(PORT, () => console.log(chalk.yellowBright(`Server running on port: ${PORT}`)));
+
+// GLOBAL UNHANDLED REJECTION
+process.on('unhandledRejection', (err) => {
+  console.log(chalk.bgRedBright('ERROR NAME: '), err.name);
+  console.log(chalk.bgRedBright('ERROR MESSAGE: '), err.message);
+  console.log(chalk.yellowBright('SHUTTING DOWN SERVER...'));
+
+  server.close(() => process.exit(1));
+  console.log(chalk.yellowBright('SERVER CLOSED...'));
+});
