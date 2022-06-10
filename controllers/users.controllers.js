@@ -7,6 +7,6 @@ export const createUser = catchAsync(async (req, res) => {
 
   res.status(201).json({
     success: true,
-    data: { user },
+    items: user,
   });
 });
