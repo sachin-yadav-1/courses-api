@@ -10,3 +10,13 @@ export const createUser = catchAsync(async (req, res) => {
     items: user,
   });
 });
+
+export const getAllUsers = catchAsync(async (req, res) => {
+  const data = req.query;
+  const users = await usersService.getAllCategories(data);
+
+  res.status(201).json({
+    success: true,
+    items: users,
+  });
+});
