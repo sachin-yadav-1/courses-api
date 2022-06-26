@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 import * as dotenv from 'dotenv';
 import morgan from 'morgan';
 
@@ -10,6 +10,7 @@ import GlobalErrorHanlder from './utils/services/error.services.js';
 
 // APP & CONFIG
 const app = express();
+app.use(json());
 dotenv.config({});
 
 // MIDDLEWARES

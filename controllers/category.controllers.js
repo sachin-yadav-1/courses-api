@@ -1,9 +1,8 @@
-import * as categoryService from './../services/categories.services.js';
 import catchAsync from './../utils/catch-async.utils.js';
 
 export const createCategory = catchAsync(async (req, res) => {
   const data = req.body;
-  const category = await categoryService.createCategory(data);
+  const category = await CategoryModel.create(data);
 
   res.status(201).json({
     success: true,
@@ -13,7 +12,11 @@ export const createCategory = catchAsync(async (req, res) => {
 
 export const getAllCategories = catchAsync(async (req, res) => {
   const data = req.query;
-  const categories = await categoryService.getAllCategories(data);
+
+  const filter = {};
+  for (const prop in data) filter[prop] = data[prop];
+
+  const categories = await CategoryModel.find({});
 
   res.status(201).json({
     success: true,
